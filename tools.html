@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link type="text/css" rel="stylesheet" href="./handwriting.css"/>
+	<title>Utility</title>
+	<style>
+		p {
+			font-size: 22px;
+			line-height: 1.3;
+			line-break: strict;
+			text-align: justify;
+			resize: both;
+			display: block;
+			box-sizing: border-box;
+			margin: .5ex 0;
+		}
+		
+		.output{
+			width: 90%;
+			height: 500px;
+			padding: 1ex;
+			overflow: scroll;
+			resize: both;
+			border: 1px solid #CCC;
+			box-sizing: border-box;
+			margin: 1.5ex 0;
+		}
+		
+		.i_left {
+			float: left;
+			width: 800px;
+			height: 120px;
+			box-sizing: border-box;
+			margin: 0 1ex 0 0;
+		}
+		
+		.i_right {
+			
+		}
+		
+		textarea#inputText {
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+			margin: 0 1ex 0 0;
+		}
+		
+		input[type="text"] {
+			width: 200px;
+		}
+		
+		.clearfix::after{
+			content: " ";
+			clear: both;
+		}
+		
+	</style>
+	<script src="http://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sugar/2.0.6/sugar.min.js"></script>
+	<script src="./handwriting.js"></script>
+</head>
+<body>
+	<div class="input clearfix">
+		<div class="i_left">
+			<textarea id="inputText" placeholder="ここに任意の文字を入力"></textarea>
+		</div>
+		<div class="i_right">
+			<input id="fontsize" type="number" placeholder="フォント大きさ(標準: 22)"> px<br/>
+			<input id="beauty" type="number" placeholder="文字の綺麗さ(標準: 250)"><br/>
+			<input id="lineheight" type="number" placeholder="行間(標準: 1.3)"><br/>
+			<label><input id="withoutRandom" type="checkbox">ランダム化なし</label><br/>
+			<button id="generate">生成</button>
+		</div>
+	</div>
+	<div class="output">
+		<p id="result" class="hw">結果はここに出力されます</p>
+	</div>
+	<script>
+		$("#generate").on("click", () => {
+			// text set
+			var res = $("#result");
+			res.text($("#inputText").val());
+			// style
+			res.css({
+				  "font-size": `${$("#fontsize").val() || 22}px`,
+				"line-height": `${$("#lineheight").val() || 1.3}`,
+			});
+			// randomize
+			var wr = $("#withoutRandom").prop("checked");
+			hw_splitSpanTag(wr ? -1 : $("#beauty").val() || 250);
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+@font-face {
+	font-family: 'Kalam';
+	font-weight: bold;
+	src: local('Kalam'), local('Kalam-Regular'),
+	     url('./fonts/kalam/kalam-v9-latin-regular.woff2') format('woff2'),
+	     url('./fonts/kalam/kalam-v9-latin-regular.woff') format('woff');
+}
+@font-face {
+	font-family: 'dartsfont';
+	src: local('dartsfont'), 
+	     url('./fonts/dartsfont/dartsfont.eot?#iefix') format('eot'),
+		 url('./fonts/dartsfont/dartsfont.woff') format('woff');
+}
+
+.hw, .hwp {
+	font-family: 'Kalam', 'dartsfont';
+	letter-spacing: -1px;
+	text-shadow: 0 0 1px #FFF;
+	color: #222;
+	transform: rotate(0.05deg);
+	font-weight: bold;
+}
